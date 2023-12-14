@@ -81,9 +81,11 @@
 		border-radius: 3px;
 		border: 1px solid var(--cui_accent);
 		cursor: text;
+		box-sizing: border-box;
 	}
 
 	input {
+		all: unset;
 		border: 0px;
 		outline: 0px;
 		box-sizing: border-box;

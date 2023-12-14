@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { Input } from '$lib';
+	import { Input } from '$lib'
+	import { Button } from "$lib"
 </script>
 
 
 <div class="page">
-	<Input/>
+	<Input style="width: 250px"/>
+	<Button style="width: 250px"/>
 </div>
 
 <style>
