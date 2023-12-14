@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import StyleHelper from "./StyleHelper.svelte";
+	import StyleHelper from "../StyleHelper.svelte";
 
 	//basic options
 	export let style = ""

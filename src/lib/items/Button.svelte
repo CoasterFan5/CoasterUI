@@ -2,7 +2,7 @@
 	// why a custom button?
 	// keeps everything looking clean
 
-	import StyleHelper from "./StyleHelper.svelte"
+	import StyleHelper from "../StyleHelper.svelte"
 	export let style = "";
 
 	export let value = 'Button!';
@@ -49,6 +49,7 @@
 		transition: background cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
 		text-decoration: none;
 		color: var(--cui_text);
+		background: var(--cui_background);
 		text-align: center;
 	}
 	.button:focus,
