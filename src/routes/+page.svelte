@@ -7,7 +7,7 @@
 	<h1>I made a UI library lol</h1>
 	<p>This is in very rough shape rn</p>
 	<ItemSpacer>
-		<Button value="View Items" type="link" href="/stuff"/>
+		<Button value="View Items" type="link" href="./stuff"/>
 	</ItemSpacer>
 	
 </div>
