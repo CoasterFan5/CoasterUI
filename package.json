@@ -1,6 +1,6 @@
 {
-	"name": "coasterui",
-	"version": "0.0.2",
+	"name": "@coasterfan5/ui",
+	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
