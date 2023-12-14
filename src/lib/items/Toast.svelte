@@ -33,13 +33,9 @@
 	transition:fly={{ duration: 500, x: 500, opacity: 0.5, easing: quintInOut }}
 >
 	<div
-		class="toast"
-		class:error={data.type == 'error'}
-		class:success={data.type == 'success'}
-		class:warn={data.type == 'warn'}
-		class:info={data.type == 'info'}
+		class="toast" style="border-left: 5px solid {data.color};"
 	>
-		<h3>{typeTitles[data.type]}</h3>
+		<h3>{data.title}</h3>
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		<p>{data.message}</p>
 		<button class="close" on:click={close}>
@@ -60,21 +56,6 @@
 		z-index: 11;
 		margin-top: 10px;
 		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.25s;
-	}
-
-	.error {
-		border-left: 5px solid rgb(255, 47, 47);
-	}
-
-	.success {
-		border-left: 5px solid rgb(2, 177, 16);
-	}
-
-	.warn {
-		border-left: 5px solid rgb(236, 167, 18);
-	}
-	.info {
-		border-left: 5px solid rgb(0, 129, 235);
 	}
 
 	.toast {

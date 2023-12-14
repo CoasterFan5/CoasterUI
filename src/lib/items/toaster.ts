@@ -4,8 +4,9 @@ import { get } from 'svelte/store';
 let id = 0;
 
 export interface Toast {
+	title: string,
+	color: string,
 	message: string;
-	type: 'error' | 'warn' | 'success' | 'info';
 	id: number;
 	life?: number;
 }

@@ -16,14 +16,25 @@
 			"warn",
 			"success"
 		]
+		let colors = [
+			"blue",
+			"red",
+			"yellow",
+			"green"
+		]
+
+		let typeColor = Math.floor(Math.random() * types.length)
+
 		if(Math.random() > 0.5) {
 			addToast({
-				type: (types[Math.floor(Math.random() * types.length)]) as "info" | "error" | "warn" | "success",
+				title: types[typeColor],
+				color: colors[typeColor],
 				message: "This is a toast!",
 			})
 		} else {
 			addToast({
-				type: (types[Math.floor(Math.random() * types.length)]) as "info" | "error" | "warn" | "success",
+				title: types[typeColor],
+				color: colors[typeColor],
 				message: "This is a toast!",
 				life: Math.round(Math.random() * 7000) + 3000
 			})
