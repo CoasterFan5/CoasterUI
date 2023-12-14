@@ -8,6 +8,6 @@
 
 <style>
 	div {
-		margin: 7px 0px;
+		padding: 7px 0px;
 	}
 </style>

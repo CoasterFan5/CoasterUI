@@ -79,7 +79,7 @@
 		position: relative;
 		width: 100%;
 		border-radius: 3px;
-		border: 1px solid var(--cui_accent);
+		border: 1px solid var(--cui_borders);
 		cursor: text;
 		box-sizing: border-box;
 	}
@@ -96,6 +96,7 @@
 		font-family: 'Lexend Variable', sans-serif;
 		background: transparent;
 		background: var(--cui_background);
+		text-align: left;
 	}
 
 	.labelBase {

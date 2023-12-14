@@ -1,5 +1,6 @@
 <script>
 	import { createStyleGuide } from "$lib"
+	import { Toaster } from "$lib";
 </script>
 
 
@@ -7,7 +8,7 @@
 	<slot/>
 </div>
 
-
+<Toaster/>
 <style>
 	:global(body) {
 		padding: 0px;

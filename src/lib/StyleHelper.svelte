@@ -4,6 +4,7 @@
 	let primary = "#3c00ff";
 	let secondary = "#e8e8e8";
 	let accent = "#00128a"
+	let borders = "gray"
 
 	type StyleGuide = {
 		text: string,
@@ -11,6 +12,7 @@
 		primary: string,
 		secondary: string,
 		accent: string,
+		borders?: string,
 	}
 
 	export let createStyleGuide = (params: StyleGuide) => {
@@ -19,9 +21,12 @@
 		primary = params.primary;
 		secondary = params.secondary;
 		accent = params.accent;
+		if(params.borders) {
+			borders = params.borders
+		}
 	}
 </script>
 
-<div class='wrap' style="--cui_text: {text}; --cui_background: {background}; --cui_primary: {primary}; --cui_secondary: {secondary}; --cui_accent: {accent}">
+<div class='wrap' style="--cui_text: {text}; --cui_background: {background}; --cui_primary: {primary}; --cui_secondary: {secondary}; --cui_accent: {accent}; --cui_borders: {borders}">
 	<slot/>
 </div>

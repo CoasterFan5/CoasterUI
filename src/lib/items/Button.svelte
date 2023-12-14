@@ -40,7 +40,7 @@
 		all: unset;
 		cursor: pointer;
 		background: transparent;
-		border: 1px solid var(--cui_accent);
+		border: 1px solid var(--cui_borders);
 		border-radius: 3px;
 		padding: 10px;
 		box-sizing: border-box;
@@ -51,6 +51,7 @@
 		color: var(--cui_text);
 		background: var(--cui_background);
 		text-align: center;
+		width: 100%;
 	}
 	.button:focus,
 	.button:hover,
