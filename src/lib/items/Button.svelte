@@ -43,7 +43,7 @@
 		all: unset;
 		cursor: pointer;
 		background: transparent;
-		border-radius: 7px;
+		border-radius: 5px;
 		padding: 10px;
 		box-sizing: border-box;
 		font-size: 1.2rem;

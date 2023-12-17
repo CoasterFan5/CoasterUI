@@ -58,7 +58,7 @@
 				<Input label="Email" type="email"/>
 			</ItemSpacer>
 			<ItemSpacer>
-				<Button value="Submit" type="submit" on:click={() => {
+				<Button value="Submit" type="submit" variation="outline" on:click={() => {
 					visibleModel = false;
 				}}/>
 			</ItemSpacer>
