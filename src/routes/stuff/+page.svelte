@@ -55,7 +55,7 @@
 				<Input label="Last Name"/>
 			</ItemSpacer>
 			<ItemSpacer>
-				<Input label="Email"/>
+				<Input label="Email" type="email"/>
 			</ItemSpacer>
 			<ItemSpacer>
 				<Button value="Submit" type="submit" on:click={() => {
@@ -78,7 +78,7 @@
 		}}/>
 	</ItemSpacer>
 	<ItemSpacer>
-		<Button style="width: 250px" type="button" value="Show Toast" on:click={toastThing}/>
+		<Button style="width: 250px" type="button" value="Show Toast" variation="outline" on:click={toastThing}/>
 	</ItemSpacer>
 	
 </div>

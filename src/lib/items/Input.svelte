@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
+	import { browser } from '$app/environment'; 
 	import StyleHelper from "../StyleHelper.svelte";
 
 	//basic options
@@ -12,78 +12,96 @@
 	export let type: 'password' | 'email' | undefined = undefined;
 	export let required = false;
 	export let autocomplete: HTMLInputElement['autocomplete'] | null = null;
+	export let pattern: RegExp | undefined = undefined;
+	export let value: string = ""
 
+	let enableJS = false;
+	let active = true;
+	let ready = false;
+
+	onMount(() => {
+		ready = false;
+		enableJS = true;
+		if(value) {
+			active = true
+		} else {
+			active = false;
+		}
+		ready = true;
+	})
 
 	let moveText = false;
 
-	let input: HTMLInputElement;
-	export let value: string = '';
-
-	let startFocus = () => input.focus();
-
-	let selectInput = () => {
+	let focusHandle = () => {
 		active = true;
-		moveText = true;
-	};
-	let deselectText = () => {
-		active = false;
-		if (value.length > 0) {
-			moveText = true;
-		} else {
-			moveText = false;
-		}
-	};
+	}
 
-	onMount(() => {
-		value = value;
-		if (value) {
-			active = false;
-			moveText = true;
+	let blurHandle = (e: Event) => {
+		if(value) {
+			active = true
 		} else {
-			active = false;
-			moveText = false;
+			active = false
 		}
-	});
-	let active = false;
+	}
 </script>
 
 <StyleHelper>
-	<button
-	style={style}
-	class="wrap"
-	class:active
-	tabindex="-1"
-	type="button"
-	on:click={startFocus}
-	>
+	<label {style}>
+		<span class:active={active} class:inactive={!active} class:ready>{label}</span>
 		<input
-			bind:this={input}
-			{name}
-			{autocomplete}
-			{required}
-			on:focus={selectInput}
-			on:blur={deselectText}
-			bind:value
-			{...{ type /* asserting string input since we know the type is always a password */ }}
-		/>
-		<div class="labelBase" class:label1={!moveText} class:labelMoved={moveText}>
-			{label}
-		</div>
-	</button>
+		{style}
+		{name}
+		{autocomplete}
+		{required}
+		{...{ type }}
+		placeholder="{label}"
+		class:doPlaceholder={!enableJS}
+		bind:value={value}
+		on:focus={focusHandle}
+		on:blur={blurHandle}
+		pattern="{pattern ? pattern.toString() : ""}"
+	/>
+	</label>
+	
+	
+	
 </StyleHelper>
 
 
 <style>
-	.wrap {
-		all: unset;
+	label {
+		display: block;
 		position: relative;
-		width: 100%;
-		border-radius: 3px;
-		border: 1px solid var(--cui_borders);
+		height: 100%;
 		cursor: text;
-		box-sizing: border-box;
+		color: var(--cui_borders);
+		font-size: 1.2rem;
 	}
-
+	.active {
+		display: none;
+		height: 20px;
+		position: absolute;
+		top: -10px;
+		left: 10px;
+		align-items: center;
+		justify-content: center;
+		background: var(--cui_background);
+		padding: 0px 5px;
+		font-size: 0.8rem;
+		color: var(--cui_text);
+	}
+	.inactive {
+		display: none;
+		height: 100%;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		padding: 0px 5px;
+		left: 6px;
+		box-sizing: border-box;
+		color: var(--cui_borders);
+	}
+	
 	input {
 		all: unset;
 		border: 0px;
@@ -97,44 +115,26 @@
 		background: transparent;
 		background: var(--cui_background);
 		text-align: left;
+		border: 1px solid var(--cui_borders);
 	}
-
-	.labelBase {
-		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-	}
-
-	.label1 {
-		font-size: 1.12rem;
-		font-weight: 400;
-		box-sizing: border-box;
-		padding: 10px;
-		top: 0px;
-		left: 0px;
-		position: absolute;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: start;
-		background: transparent;
-		color: #333;
-		background-image: none;
-		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-		opacity: 0.5;
-	}
-
-	.labelMoved {
-		font-size: 0.8rem;
-		position: absolute;
-		top: -10px;
-		left: 10px;
-		padding: 0px 5px;
-		color: var(--cui_text);
-		background: var(--cui_background);
-		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-	}
-
-	.active {
+	input:focus {
 		border: 1px solid var(--cui_primary);
 		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 	}
+	input::placeholder {
+		position: fixed;
+		display: none;
+		color: transparent;
+	}
+	.doPlaceholder::placeholder {
+		color: var(--cui_borders);
+	}
+	.ready {
+		display: flex;
+		transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+	}
+
+
+	
+	
 </style>
