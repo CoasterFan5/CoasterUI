@@ -116,6 +116,7 @@
 		background: var(--cui_background);
 		text-align: left;
 		border: 1px solid var(--cui_borders);
+		color: var(--cui_text)
 	}
 	input:focus {
 		border: 1px solid var(--cui_primary);
