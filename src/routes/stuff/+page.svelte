@@ -45,11 +45,11 @@
 </script>
 
 <ModelHelper bind:visible={visibleModel}>
-	<form>
+	<form method="get">
 		<ModelFormDiv>
 			<h1>Contact Me!</h1>
 			<ItemSpacer>
-				<Input label="First Name"/>
+				<Input label="First Name" regex={/^[a-z]*$/mg} autocomplete="off"/>
 			</ItemSpacer>
 			<ItemSpacer>
 				<Input label="Last Name"/>
@@ -58,9 +58,7 @@
 				<Input label="Email" type="email"/>
 			</ItemSpacer>
 			<ItemSpacer>
-				<Button value="Submit" type="submit" variation="outline" on:click={() => {
-					visibleModel = false;
-				}}/>
+				<Button value="Submit" type="submit" variation="outline"/>
 			</ItemSpacer>
 			
 		</ModelFormDiv>

@@ -12,8 +12,44 @@
 	export let type: 'password' | 'email' | undefined = undefined;
 	export let required = false;
 	export let autocomplete: HTMLInputElement['autocomplete'] | null = null;
-	export let pattern: RegExp | undefined = undefined;
+	export let pattern: string = ".*";
+
+	/**
+	 * Value of the input
+	 * 
+	 * @remarks
+	 * Allows you to set the value of the input
+	 * Can also be read to get the value the user has entered
+	 */
 	export let value: string = ""
+
+
+	/**
+	 * Regex validation for inputs
+	 * 
+	 * 
+	 * @remarks
+	 * A replacement for pattern
+	 * uses instant validation to prevent users from inputting an invalid character.
+	 * Each character is tested against this regex, not the entire string.
+	 * 
+	 * Note: Please avoid using /g in regex.
+	 * 
+	 * @beta
+	 */
+	export let regex: RegExp | undefined = undefined;
+
+	/**
+	 * Try and fix a pasted string to match regex?
+	 * 
+	 * @remarks
+	 * this will try and fix any string pasted to match regex
+	 * for example, if your regex only allows a-z lowercase,
+	 * and the user pasts abc123 into a text box, it will filter and allow the abc to be pasted.
+	 * 
+	 * @beta
+	 */
+	export let regexTryFix: boolean = true;
 
 	let enableJS = false;
 	let active = true;
@@ -36,12 +72,51 @@
 		active = true;
 	}
 
+	
+
 	let blurHandle = (e: Event) => {
 		if(value) {
 			active = true
 		} else {
 			active = false
 		}
+	}
+
+	let oldValue = value;
+
+	let inputHandle = (e: Event) => {
+		if(!(e.target as HTMLInputElement)) {
+			return
+		}
+
+
+
+		let currentValue = (e.target as HTMLInputElement).value
+
+		if(regex) {
+
+			let newRegex = new RegExp(regex, "")
+			let allow = newRegex.test(currentValue.toString())
+			console.log(allow, currentValue)
+			if(!allow) {
+				console.log('reset');
+				if(regexTryFix) {
+					let regexFixed = "";
+					for(let i = 0; i < currentValue.length; i++) {
+						if(newRegex.test(currentValue.charAt(i))) {
+							regexFixed += currentValue.charAt(i)
+						}
+						oldValue = regexFixed;
+						(e.target as HTMLInputElement).value = regexFixed;
+					}
+				}
+				(e.target as HTMLInputElement).value = oldValue;
+			} else {
+				console.log("success")
+				oldValue = currentValue;
+			}
+		}
+		
 	}
 </script>
 
@@ -54,12 +129,15 @@
 		{autocomplete}
 		{required}
 		{...{ type }}
+		{pattern}
 		placeholder="{label}"
 		class:doPlaceholder={!enableJS}
 		bind:value={value}
 		on:focus={focusHandle}
 		on:blur={blurHandle}
-		pattern="{pattern ? pattern.toString() : ""}"
+		on:input={inputHandle}
+
+		
 	/>
 	</label>
 	
