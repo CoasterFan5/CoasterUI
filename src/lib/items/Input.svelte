@@ -28,12 +28,9 @@
 	 * Regex validation for inputs
 	 * 
 	 * 
-	 * @remarks
+	 * @description
 	 * A replacement for pattern
 	 * uses instant validation to prevent users from inputting an invalid character.
-	 * Each character is tested against this regex, not the entire string.
-	 * 
-	 * Note: Please avoid using /g in regex.
 	 * 
 	 * @beta
 	 */
@@ -42,7 +39,7 @@
 	/**
 	 * Try and fix a pasted string to match regex?
 	 * 
-	 * @remarks
+	 * @description
 	 * this will try and fix any string pasted to match regex
 	 * for example, if your regex only allows a-z lowercase,
 	 * and the user pasts abc123 into a text box, it will filter and allow the abc to be pasted.
