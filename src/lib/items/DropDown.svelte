@@ -16,23 +16,24 @@
     export let name = "dropDown"
     export let label = "Select Option"
 
+    export let style: string = ""
 
     export let options: OptionList;
 
 </script>
 
 <StyleHelper>
-    <div class="wrap">
+    <div class="wrap" {style}>
         
         <label>
             <span class="label">
-                Issue Type
+                {label}
             </span>
             <span class="labelBG">
-                Issue Type
+                {label}
             </span>
             <!--if we have js, we want a completely new element-->
-            <select name={name} placeholder={label} >
+            <select name={name} placeholder={label} {style} >
                 <option class="default" hidden value="cui_default_option">Select Option</option>
                 {#each options as option, i}
                     <option value="{option.value || i}">{option.display}</option>
