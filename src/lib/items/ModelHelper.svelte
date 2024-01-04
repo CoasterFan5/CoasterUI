@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { fly } from "svelte/transition";
+	import { linear, quintInOut } from 'svelte/easing';
+
 	export let visible = false;
 
 	let button: HTMLElement;
@@ -21,12 +24,16 @@
 <svelte:window on:keydown={keyCheck}/>
 {#if visible}
 	<button bind:this={button} class="wrap" on:mousedown={clickCheck}>
-		<slot/>
+		<div class="slotWrap" transition:fly={{ duration: 250, y: 100, opacity: 0, easing: quintInOut }}>
+			<slot/>
+		</div>
+		
 	</button>
 {/if}
 
 <style>
 	.wrap {
+		all: unset;
 		width: 100%;
 		height: 100%;
 		position: fixed;

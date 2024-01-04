@@ -26,12 +26,13 @@
 	};
 </script>
 
-<StyleHelper>
+
 <div
 	style="z-index: {100000 - data.id ?? 0};"
 	class="wrap"
-	transition:fly={{ duration: 500, x: 500, opacity: 0.5, easing: quintInOut }}
+	transition:fly={{ duration: 250, x: 500, opacity: 0.5, easing: quintInOut }}
 >
+	<StyleHelper>
 	<div
 		class="toast" style="border-left: 5px solid {data.color};"
 	>
@@ -39,7 +40,7 @@
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		<p>{data.message}</p>
 		<button class="close" on:click={close}>
-			<svg width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+			<svg width="24" height="24" viewBox="0 0 24 24" style="fill: var(--cui_text)">
 				<path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"/>
 			</svg>
 		</button>
@@ -47,8 +48,9 @@
 			<div style="animation-duration: {data.life}ms;" class="timer" />
 		{/if}
 	</div>
-</div>
 </StyleHelper>
+</div>
+
 
 <style >
 	.wrap {
@@ -104,8 +106,9 @@
 		left: 0px;
 		width: 0%;
 		height: 3px;
-		background: black;
+		background: var(--cui_text);
 		animation-timing-function: linear;
 		animation-name: closebar;
+		opacity: 0.5;
 	}
 </style>

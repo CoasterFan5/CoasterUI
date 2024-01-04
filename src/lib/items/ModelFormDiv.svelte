@@ -20,5 +20,8 @@
 		box-sizing: border-box;
 		background: var(--cui_background);
 		border-radius: 3px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 </style>

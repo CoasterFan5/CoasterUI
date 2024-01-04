@@ -2,7 +2,20 @@
 	// why a custom button?
 	// keeps everything looking clean
 
+	let styleString: string;
+
 	import StyleHelper from "../StyleHelper.svelte"
+	import { buttonStyle } from "$lib/styler";
+
+	buttonStyle.subscribe((styles) => {
+		console.log(styles)
+		if(styles && styles.regular) {
+			styleString = `--cui_button_regular_text: ${styles.regular.text}; --cui_button_regular_text_hover: ${styles.regular.textHover}; --cui_button_outline_text: ${styles.outline.text}; --cui_button_outline_text_hover: ${styles.outline.textHover};`
+		}	
+		
+	})
+	
+
 	export let style = "";
 
 	export let value = 'Button!';
@@ -23,7 +36,7 @@
 	
 </script>
 
-<StyleHelper>
+<StyleHelper style="{styleString}">
 	{#if type == 'submit' || type == 'reset' || type == 'button'}
 		<button bind:this={button} {style} class="button" class:outline={variation == "outline"} class:regular={variation=="regular"} {type} on:click={clickEventHandle}>
 			{value}
@@ -40,6 +53,7 @@
 	
 
 	.button {
+		color: var(--cui_text);
 		all: unset;
 		cursor: pointer;
 		background: transparent;
@@ -56,7 +70,7 @@
 
 	.regular {
 		border: 1px solid var(--cui_primary);
-		color: var(--cui_background);
+		color: var(--cui_button_regular_text);
 		background: var(--cui_primary);
 	}
 	.regular:focus,
@@ -64,12 +78,12 @@
 	.regular:active {
 		border: 1px solid var(--cui_accent);
 		background: var(--cui_accent);
-		color: var(--cui_background);
+		color: var(--cui_button_regular_text_hover);
 	}
 
 	.outline {
 		border: 1px solid var(--cui_primary);
-		color: var(--cui_text);
+		color: var(--cui_button_outline_text);
 		background: var(--cui_background);
 	}
 	.outline:focus,
@@ -77,7 +91,7 @@
 	.outline:active {
 		border: 1px solid var(--cui_primary);
 		background: var(--cui_primary);
-		color: var(--cui_background);
+		color: var(--cui_button_outline_text_hover);
 	}
 	
 </style>

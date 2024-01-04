@@ -133,10 +133,16 @@
 		on:focus={focusHandle}
 		on:blur={blurHandle}
 		on:input={inputHandle}
-
 		
-	/>
+		
+		/>
+		{#if active && enableJS}
+				<div class="activebg">
+					{label}
+				</div>
+		{/if}
 	</label>
+	
 	
 	
 	
@@ -160,10 +166,26 @@
 		left: 10px;
 		align-items: center;
 		justify-content: center;
-		background: var(--cui_background);
 		padding: 0px 5px;
 		font-size: 0.8rem;
 		color: var(--cui_text);
+		opacity: 0.75;
+		text-wrap: nowrap;
+		z-index: 3;
+	}
+	.activebg {
+		height: 20px;
+		position: absolute;
+		top: -10px;
+		left: 10px;
+		align-items: center;
+		justify-content: center;
+		padding: 0px 5px;
+		font-size: 0.8rem;
+		color: transparent;
+		background: var(--cui_background);
+		text-wrap: nowrap;
+		z-index: 2;
 	}
 	.inactive {
 		display: none;
