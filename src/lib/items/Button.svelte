@@ -66,6 +66,7 @@
 		text-decoration: none;
 		text-align: center;
 		width: 100%;
+		display: block;
 	}
 
 	.regular {

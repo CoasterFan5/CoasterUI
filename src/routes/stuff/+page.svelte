@@ -4,11 +4,25 @@
 	import { ItemSpacer } from "$lib";
 	import { ModelHelper } from "$lib"
 	import { ModelFormDiv} from "$lib"
-	import type { Toast } from '$lib/items/toaster';
-
+	import { DropDown, type OptionList }from '$lib';
 	let visibleModel = false;
 
-	
+
+	const ddValues: OptionList = [
+		{
+			display: "Billing Help",
+			value: "billing"
+		},
+		{
+			display: "General Help",
+			value: "general",
+		},
+		{
+			display: "Server Help",
+			value: "servers"
+		},
+	]
+
 	const toastThing = () => {
 		let types = [
 			"info",
@@ -55,7 +69,7 @@
 				<Input label="Last Name"/>
 			</ItemSpacer>
 			<ItemSpacer>
-				<Input label="Email" type="email"/>
+				<DropDown options={ddValues}/>
 			</ItemSpacer>
 			<ItemSpacer>
 				<Button value="Submit" type="submit" variation="outline"/>
@@ -67,22 +81,32 @@
 
 
 <div class="page">
-	<ItemSpacer>
-		<Input style="width: 250px"/>
-	</ItemSpacer>
-	<ItemSpacer>
-		<Button style="width: 250px" value="Open Model" type="button" on:click={() => {
-			visibleModel = true;
-		}}/>
-	</ItemSpacer>
-	<ItemSpacer>
-		<Button style="width: 250px" type="button" value="Show Toast" variation="outline" on:click={toastThing}/>
-	</ItemSpacer>
+	<div class="components">
+		<ItemSpacer>
+			<Input/>
+		</ItemSpacer>
+		<ItemSpacer>
+			<Button value="Open Model" type="button" on:click={() => {
+				visibleModel = true;
+			}}/>
+		</ItemSpacer>
+		<ItemSpacer>
+			<DropDown options={ddValues}/>
+		</ItemSpacer>
+		<ItemSpacer>
+			<Button type="button" value="Show Toast" variation="outline" on:click={toastThing}/>
+		</ItemSpacer>
+	</div>
+
 	
 </div>
 
 <style>
 	.page {
 		width: 80%;
+	}
+	.components {
+		max-width: 300px;
+		box-sizing: border-box;
 	}
 </style>
