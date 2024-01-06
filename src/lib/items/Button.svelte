@@ -8,7 +8,6 @@
 	import { buttonStyle } from "$lib/styler";
 
 	buttonStyle.subscribe((styles) => {
-		console.log(styles)
 		if(styles && styles.regular) {
 			styleString = `--cui_button_regular_text: ${styles.regular.text}; --cui_button_regular_text_hover: ${styles.regular.textHover}; --cui_button_outline_text: ${styles.outline.text}; --cui_button_outline_text_hover: ${styles.outline.textHover};`
 		}	

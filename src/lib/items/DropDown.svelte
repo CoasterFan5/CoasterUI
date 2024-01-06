@@ -15,8 +15,9 @@
 	import { onMount } from "svelte";
     export let name = "dropDown"
     export let label = "Select Option"
+    export let value: string = "cui_default_option";
 
-    export let style: string = ""
+    export let style: string;
 
     export let options: OptionList;
 
@@ -33,7 +34,7 @@
                 {label}
             </span>
             <!--if we have js, we want a completely new element-->
-            <select name={name} placeholder={label} {style} >
+            <select name={name} placeholder={label} {style} {value}>
                 <option class="default" hidden value="cui_default_option">Select Option</option>
                 {#each options as option, i}
                     <option value="{option.value || i}">{option.display}</option>

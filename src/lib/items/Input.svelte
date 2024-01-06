@@ -94,9 +94,7 @@
 
 			let newRegex = new RegExp(regex, "")
 			let allow = newRegex.test(currentValue.toString())
-			console.log(allow, currentValue)
 			if(!allow) {
-				console.log('reset');
 				if(regexTryFix) {
 					let regexFixed = "";
 					for(let i = 0; i < currentValue.length; i++) {
@@ -109,7 +107,6 @@
 				}
 				(e.target as HTMLInputElement).value = oldValue;
 			} else {
-				console.log("success")
 				oldValue = currentValue;
 			}
 		}
