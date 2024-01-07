@@ -130,6 +130,10 @@
 		on:focus={focusHandle}
 		on:blur={blurHandle}
 		on:input={inputHandle}
+		on:input
+		on:change
+		on:blur
+		on:focus
 		
 		
 		/>
