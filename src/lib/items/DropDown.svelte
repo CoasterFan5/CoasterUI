@@ -24,7 +24,7 @@
 </script>
 
 <StyleHelper>
-    <div class="wrap" {style}>
+    <div class="wrap" {style} >
         
         <label>
             <span class="label">
@@ -34,7 +34,7 @@
                 {label}
             </span>
             <!--if we have js, we want a completely new element-->
-            <select name={name} placeholder={label} {style} {value}>
+            <select name={name} placeholder={label} {style} bind:value={value} on:click on:blur on:focus on:change>
                 <option class="default" hidden value="cui_default_option">Select Option</option>
                 {#each options as option, i}
                     <option value="{option.value || i}">{option.display}</option>
